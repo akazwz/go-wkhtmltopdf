@@ -19,7 +19,7 @@ func GenerateImageFromURL(url string, path string, arg ...string) (err error, fi
 	}
 	file = path + fileName + "." + imageType
 
-	file, err = filepath.Abs("file")
+	file, err = filepath.Abs(file)
 	if err != nil {
 		log.Fatalln("file path error")
 	}

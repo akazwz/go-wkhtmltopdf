@@ -14,7 +14,7 @@ func GeneratePdfFromURL(url string, path string) (err error, file string) {
 	fileName := uuid.NewV4().String()
 	file = path + fileName + ".pdf"
 
-	file, err = filepath.Abs("file")
+	file, err = filepath.Abs(file)
 	if err != nil {
 		log.Fatalln("file path error")
 	}
