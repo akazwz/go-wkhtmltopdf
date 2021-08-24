@@ -7,6 +7,7 @@ import (
 	"log"
 	"os/exec"
 	"path/filepath"
+	"time"
 )
 
 // GeneratePdfFromURL
@@ -19,7 +20,13 @@ func GeneratePdfFromURL(url string, path string) (err error, file string) {
 		log.Fatal("path error")
 	}
 
-	file = path + fileName + ".pdf"
+	location, err := time.LoadLocation("Asia/Shanghai")
+	if err != nil {
+		log.Fatalln("location load error")
+	}
+	timeStr := time.Now().In(location).String()
+
+	file = path + timeStr + "-" + fileName + ".pdf"
 	file, err = filepath.Abs(file)
 	if err != nil {
 		log.Fatalln("file path error")

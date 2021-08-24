@@ -7,6 +7,7 @@ import (
 	"log"
 	"os/exec"
 	"path/filepath"
+	"time"
 )
 
 // GenerateImageFromURL
@@ -24,7 +25,13 @@ func GenerateImageFromURL(url string, path string, arg ...string) (err error, fi
 		log.Fatal("path error")
 	}
 
-	file = path + fileName + "." + imageType
+	location, err := time.LoadLocation("Asia/Shanghai")
+	if err != nil {
+		log.Fatalln("location load error")
+	}
+	timeStr := time.Now().In(location).String()
+
+	file = path + timeStr + "-" + fileName + "." + imageType
 
 	file, err = filepath.Abs(file)
 	if err != nil {
