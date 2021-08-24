@@ -16,7 +16,7 @@ func GenerateImageFromURL(url string, arg ...string) (err error, filepath string
 	if len(arg) >= 1 {
 		imageType = arg[0]
 	}
-	filepath = fileName + imageType
+	filepath = fileName + "." + imageType
 	cmd := exec.Command("wkhtmltoimage", "--javascript-delay", "3000", url, filepath)
 
 	var out bytes.Buffer
