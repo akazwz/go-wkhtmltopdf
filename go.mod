@@ -1,4 +1,4 @@
-module go-wkhtmltopdf
+module github.com/akazwz/go-wkhtmltopdf
 
 go 1.16
 
