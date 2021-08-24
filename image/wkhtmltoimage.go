@@ -9,7 +9,7 @@ import (
 
 func GenerateImageFromURL(url string) (err error, filepath string) {
 	fileName := uuid.NewV4().String()
-	filepath = fileName + ".png"
+	filepath = fileName + ".jpg"
 	cmd := exec.Command("wkhtmltoimage", "--javascript-delay", "3000", url, filepath)
 
 	var out bytes.Buffer
