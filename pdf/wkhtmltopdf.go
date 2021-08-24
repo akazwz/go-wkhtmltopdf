@@ -9,9 +9,9 @@ import (
 
 // GeneratePdfFromURL
 // url
-func GeneratePdfFromURL(url string) (err error, filepath string) {
+func GeneratePdfFromURL(url string, path string) (err error, filepath string) {
 	fileName := uuid.NewV4().String()
-	filepath = fileName + ".pdf"
+	filepath = path + fileName + ".pdf"
 	cmd := exec.Command("wkhtmltopdf", "--javascript-delay", "3000", url, filepath)
 
 	var out bytes.Buffer

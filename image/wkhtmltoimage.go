@@ -10,13 +10,13 @@ import (
 // GenerateImageFromURL
 // url
 // image type such as jpg (default) png
-func GenerateImageFromURL(url string, arg ...string) (err error, filepath string) {
+func GenerateImageFromURL(url string, path string, arg ...string) (err error, filepath string) {
 	fileName := uuid.NewV4().String()
 	imageType := "jpg"
 	if len(arg) >= 1 {
 		imageType = arg[0]
 	}
-	filepath = fileName + "." + imageType
+	filepath = path + fileName + "." + imageType
 	cmd := exec.Command("wkhtmltoimage", "--javascript-delay", "3000", url, filepath)
 
 	var out bytes.Buffer
