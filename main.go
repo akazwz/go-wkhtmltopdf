@@ -18,7 +18,7 @@ func main() {
 
 	fmt.Println("pdf filepath:", filepath)
 
-	err, filepath = image.GenerateImageFromURL("https://s.weibo.com/top/summary/", "pubic/")
+	err, filepath = image.GenerateImageFromURL("https://s.weibo.com/top/summary/", "public/")
 	if err != nil {
 		log.Fatalln("generate error:", err)
 	}
