@@ -24,7 +24,9 @@ func GeneratePdfFromURL(url string, path string) (err error, file string) {
 	if err != nil {
 		log.Fatalln("location load error")
 	}
-	timeStr := time.Now().In(location).String()
+	now := time.Now().In(location)
+
+	timeStr := now.Format("2006-01-02-15-04-05")
 
 	file = path + timeStr + "-" + fileName + ".pdf"
 	file, err = filepath.Abs(file)
