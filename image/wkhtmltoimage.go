@@ -3,6 +3,7 @@ package image
 import (
 	"bytes"
 	uuid "github.com/satori/go.uuid"
+	"go-wkhtmltopdf/utils"
 	"log"
 	"os/exec"
 	"path/filepath"
@@ -17,6 +18,12 @@ func GenerateImageFromURL(url string, path string, arg ...string) (err error, fi
 	if len(arg) >= 1 {
 		imageType = arg[0]
 	}
+
+	err = utils.PathExistedAndCreate(path)
+	if err != nil {
+		log.Fatal("path error")
+	}
+
 	file = path + fileName + "." + imageType
 
 	file, err = filepath.Abs(file)

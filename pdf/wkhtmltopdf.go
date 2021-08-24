@@ -3,6 +3,7 @@ package pdf
 import (
 	"bytes"
 	uuid "github.com/satori/go.uuid"
+	"go-wkhtmltopdf/utils"
 	"log"
 	"os/exec"
 	"path/filepath"
@@ -12,8 +13,13 @@ import (
 // url
 func GeneratePdfFromURL(url string, path string) (err error, file string) {
 	fileName := uuid.NewV4().String()
-	file = path + fileName + ".pdf"
 
+	err = utils.PathExistedAndCreate(path)
+	if err != nil {
+		log.Fatal("path error")
+	}
+
+	file = path + fileName + ".pdf"
 	file, err = filepath.Abs(file)
 	if err != nil {
 		log.Fatalln("file path error")
