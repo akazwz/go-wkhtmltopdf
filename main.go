@@ -21,6 +21,8 @@ func main() {
 	}
 
 	state := cmd.ProcessState.String()
+	success := cmd.ProcessState.Success()
 	fmt.Println("输出:", out.String())
 	fmt.Println("状态:", state)
+	fmt.Println("成功:", success)
 }
