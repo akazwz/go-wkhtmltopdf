@@ -7,9 +7,16 @@ import (
 	"os/exec"
 )
 
-func GenerateImageFromURL(url string) (err error, filepath string) {
+// GenerateImageFromURL
+// url
+// image type such as jpg (default) png
+func GenerateImageFromURL(url string, arg ...string) (err error, filepath string) {
 	fileName := uuid.NewV4().String()
-	filepath = fileName + ".jpg"
+	imageType := "jpg"
+	if len(arg) >= 1 {
+		imageType = arg[0]
+	}
+	filepath = fileName + imageType
 	cmd := exec.Command("wkhtmltoimage", "--javascript-delay", "3000", url, filepath)
 
 	var out bytes.Buffer
