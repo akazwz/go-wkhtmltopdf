@@ -18,6 +18,8 @@ func GeneratePdfFromURL(url string) (err error, filepath string) {
 	var stderr bytes.Buffer
 	cmd.Stderr = &stderr
 
+	log.Println("cmd:", cmd.String())
+
 	log.Println("stderr:", stderr.String())
 	// set stderr to the provided writer, or create a new buffer
 	err = cmd.Run()
