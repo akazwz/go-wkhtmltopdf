@@ -17,8 +17,10 @@ func main() {
 	// set stderr to the provided writer, or create a new buffer
 	err := cmd.Run()
 	if err != nil {
-		log.Fatal("run error")
+		log.Fatal("run error", err)
 	}
 
-	fmt.Println(out.String())
+	state := cmd.ProcessState.String()
+	fmt.Println("输出:", out.String())
+	fmt.Println("状态:", state)
 }
