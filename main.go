@@ -9,7 +9,7 @@ import (
 
 func main() {
 	fmt.Println("Hello, wkhtmltopdf")
-	err, filepath := pdf.GeneratePdfFromURL("https://www.douban.com/")
+	err, filepath := pdf.GeneratePdfFromURL("https://s.weibo.com/top/summary/")
 
 	if err != nil {
 		log.Fatalln("generate error:", err)
@@ -17,7 +17,7 @@ func main() {
 
 	fmt.Println("pdf filepath:", filepath)
 
-	err, filepath = image.GenerateImageFromURL("https://www.douban.com/")
+	err, filepath = image.GenerateImageFromURL("https://s.weibo.com/top/summary/")
 	if err != nil {
 		log.Fatalln("generate error:", err)
 	}

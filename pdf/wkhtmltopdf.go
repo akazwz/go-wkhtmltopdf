@@ -10,7 +10,7 @@ import (
 func GeneratePdfFromURL(url string) (err error, filepath string) {
 	fileName := uuid.NewV4().String()
 	filepath = fileName + ".pdf"
-	cmd := exec.Command("wkhtmltopdf", url, filepath, "--javascript-delay", "3000")
+	cmd := exec.Command("wkhtmltopdf", "--javascript-delay", "3000", url, filepath)
 
 	var out bytes.Buffer
 	cmd.Stdout = &out
@@ -26,6 +26,5 @@ func GeneratePdfFromURL(url string) (err error, filepath string) {
 	if err != nil {
 		log.Fatalln("run error", err)
 	}
-
 	return
 }

@@ -10,7 +10,7 @@ import (
 func GenerateImageFromURL(url string) (err error, filepath string) {
 	fileName := uuid.NewV4().String()
 	filepath = fileName + ".png"
-	cmd := exec.Command("wkhtmltoimage", url, filepath, "--javascript-delay", "3000")
+	cmd := exec.Command("wkhtmltoimage", "--javascript-delay", "3000", url, filepath)
 
 	var out bytes.Buffer
 	cmd.Stdout = &out
@@ -26,6 +26,5 @@ func GenerateImageFromURL(url string) (err error, filepath string) {
 	if err != nil {
 		log.Fatalln("run error", err)
 	}
-
 	return
 }
