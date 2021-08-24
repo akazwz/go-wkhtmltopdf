@@ -24,7 +24,7 @@ func GeneratePdfFromURL(url string) (err error, filepath string) {
 		log.Fatalln("run error", err)
 	}
 
-	log.Println("stderr:", stderr)
+	log.Println("stderr:", stderr.String())
 
 	return
 }
