@@ -1,4 +1,4 @@
-package pdf
+package image
 
 import (
 	"bytes"
@@ -7,10 +7,10 @@ import (
 	"os/exec"
 )
 
-func GeneratePdfFromURL(url string) (err error, filepath string) {
+func GenerateImageFromURL(url string) (err error, filepath string) {
 	fileName := uuid.NewV4().String()
-	filepath = fileName + ".pdf"
-	cmd := exec.Command("wkhtmltopdf", url, filepath)
+	filepath = fileName + ".png"
+	cmd := exec.Command("wkhtmltoimage", url, filepath)
 
 	var out bytes.Buffer
 	cmd.Stdout = &out
