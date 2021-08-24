@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	"go-wkhtmltopdf/image"
-	"go-wkhtmltopdf/pdf"
+	"github.com/akazwz/go-wkhtmltopdf/image"
+	"github.com/akazwz/go-wkhtmltopdf/pdf"
 	"log"
 )
 
