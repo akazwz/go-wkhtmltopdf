@@ -1,5 +1,24 @@
 package pdf
 
-func GeneratePdfFromURL(url string) {
+import (
+	"bytes"
+	uuid "github.com/satori/go.uuid"
+	"log"
+	"os/exec"
+)
 
+func GeneratePdfFromURL(url string) (err error, filepath string) {
+	fileName := uuid.NewV4().String()
+	filepath = fileName + ".pdf"
+	cmd := exec.Command("wkhtmltopdf", url, filepath)
+
+	var out bytes.Buffer
+	cmd.Stdout = &out
+
+	// set stderr to the provided writer, or create a new buffer
+	err = cmd.Run()
+	if err != nil {
+		log.Fatalln("run error", err)
+	}
+	return
 }
