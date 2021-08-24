@@ -17,11 +17,13 @@ func GeneratePdfFromURL(url string) (err error, filepath string) {
 
 	var stderr bytes.Buffer
 	cmd.Stderr = &stderr
+
+	log.Println("stderr:", stderr.String())
 	// set stderr to the provided writer, or create a new buffer
 	err = cmd.Run()
 	if err != nil {
 		log.Fatalln("run error", err)
 	}
-	log.Println("stderr:", stderr.String())
+
 	return
 }
