@@ -9,7 +9,7 @@ import (
 
 func main() {
 	fmt.Println("Hello, wkhtmltopdf")
-	cmd := exec.Command("wkhtmltopdf")
+	cmd := exec.Command("wkhtmltopdf", "https://www.douban.com/", "douban.pdf")
 
 	var out bytes.Buffer
 	cmd.Stdout = &out
