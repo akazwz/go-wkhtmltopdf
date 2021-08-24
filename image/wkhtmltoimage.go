@@ -5,19 +5,25 @@ import (
 	uuid "github.com/satori/go.uuid"
 	"log"
 	"os/exec"
+	"path/filepath"
 )
 
 // GenerateImageFromURL
 // url
 // image type such as jpg (default) png
-func GenerateImageFromURL(url string, path string, arg ...string) (err error, filepath string) {
+func GenerateImageFromURL(url string, path string, arg ...string) (err error, file string) {
 	fileName := uuid.NewV4().String()
 	imageType := "jpg"
 	if len(arg) >= 1 {
 		imageType = arg[0]
 	}
-	filepath = path + fileName + "." + imageType
-	cmd := exec.Command("wkhtmltoimage", "--javascript-delay", "3000", url, filepath)
+	file = path + fileName + "." + imageType
+
+	file, err = filepath.Abs("file")
+	if err != nil {
+		log.Fatalln("file path error")
+	}
+	cmd := exec.Command("wkhtmltoimage", "--javascript-delay", "3000", url, file)
 
 	var out bytes.Buffer
 	cmd.Stdout = &out

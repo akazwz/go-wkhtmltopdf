@@ -5,14 +5,21 @@ import (
 	uuid "github.com/satori/go.uuid"
 	"log"
 	"os/exec"
+	"path/filepath"
 )
 
 // GeneratePdfFromURL
 // url
-func GeneratePdfFromURL(url string, path string) (err error, filepath string) {
+func GeneratePdfFromURL(url string, path string) (err error, file string) {
 	fileName := uuid.NewV4().String()
-	filepath = path + fileName + ".pdf"
-	cmd := exec.Command("wkhtmltopdf", "--javascript-delay", "3000", url, filepath)
+	file = path + fileName + ".pdf"
+
+	file, err = filepath.Abs("file")
+	if err != nil {
+		log.Fatalln("file path error")
+	}
+
+	cmd := exec.Command("wkhtmltopdf", "--javascript-delay", "3000", url, file)
 
 	var out bytes.Buffer
 	cmd.Stdout = &out

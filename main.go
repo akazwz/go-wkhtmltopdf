@@ -9,6 +9,7 @@ import (
 
 func main() {
 	fmt.Println("Hello, wkhtmltopdf")
+
 	err, filepath := pdf.GeneratePdfFromURL("https://s.weibo.com/top/summary/", "public/")
 
 	if err != nil {
