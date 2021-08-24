@@ -2,8 +2,8 @@ package image
 
 import (
 	"bytes"
+	"github.com/akazwz/go-wkhtmltopdf/utils"
 	uuid "github.com/satori/go.uuid"
-	"go-wkhtmltopdf/utils"
 	"log"
 	"os/exec"
 	"path/filepath"
