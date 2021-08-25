@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"github.com/akazwz/go-wkhtmltopdf/utils"
 	uuid "github.com/satori/go.uuid"
-	"log"
 	"os/exec"
 	"path/filepath"
 	"time"
@@ -22,12 +21,12 @@ func GenerateImageFromURL(url string, path string, arg ...string) (err error, fi
 
 	err = utils.PathExistedAndCreate(path)
 	if err != nil {
-		log.Fatal("path error")
+		return err, ""
 	}
 
 	location, err := time.LoadLocation("Asia/Shanghai")
 	if err != nil {
-		log.Fatalln("location load error")
+		return err, ""
 	}
 	now := time.Now().In(location)
 
@@ -37,7 +36,7 @@ func GenerateImageFromURL(url string, path string, arg ...string) (err error, fi
 
 	file, err = filepath.Abs(file)
 	if err != nil {
-		log.Fatalln("file path error")
+		return err, ""
 	}
 	cmd := exec.Command("wkhtmltoimage", "--javascript-delay", "3000", url, file)
 
@@ -47,13 +46,10 @@ func GenerateImageFromURL(url string, path string, arg ...string) (err error, fi
 	var stderr bytes.Buffer
 	cmd.Stderr = &stderr
 
-	log.Println("cmd:", cmd.String())
-
-	log.Println("stderr:", stderr.String())
 	// set stderr to the provided writer, or create a new buffer
 	err = cmd.Run()
 	if err != nil {
-		log.Fatalln("run error", err)
+		return err, ""
 	}
 	return
 }
